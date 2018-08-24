@@ -6,4 +6,12 @@ describe Astronaut, type: :model do
     it { should validate_presence_of :age }
     it { should validate_presence_of :job }
   end
+  describe 'Class Methods' do
+    it '.average_age' do
+      astronaut1 = Astronaut.create!(name: 'Astro 1', age: 30, job: 'Job 1')
+      astronaut2 = Astronaut.create!(name: 'Astro 2', age: 50, job: 'Job 2')
+
+      expect(Astronaut.average_age).to eq(40)
+    end
+  end
 end
