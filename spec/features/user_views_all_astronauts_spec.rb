@@ -21,5 +21,18 @@ describe 'user can view a list of all astronauts' do
 
       expect(page).to have_content(Astronaut.average_age)
     end
+    it 'displays list alphabetically of missions for each astronaut' do
+      mission1 = @astronaut1.space_missions.create!(title: 'Apollo 1', trip_length: 10)
+      mission2 = @astronaut1.space_missions.create!(title: 'Gemini 2', trip_length: 4)
+      mission3 = @astronaut2.space_missions.create!(title: 'Saturn 5', trip_length: 5)
+      mission4 = @astronaut2.space_missions.create!(title: 'Apollo 11', trip_length: 10)
+
+      visit astronauts_path
+
+      expect(page).to have_content(mission1.title)
+      expect(page).to have_content(mission2.title)
+      expect(page).to have_content(mission4.title)
+      expect(page).to have_content(mission3.title)
+    end
   end
 end

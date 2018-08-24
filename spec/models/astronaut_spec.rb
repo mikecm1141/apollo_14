@@ -6,6 +6,9 @@ describe Astronaut, type: :model do
     it { should validate_presence_of :age }
     it { should validate_presence_of :job }
   end
+  describe 'relationships' do
+    it { should have_many(:space_missions).through(:astronaut_missions) }
+  end
   describe 'Class Methods' do
     it '.average_age' do
       astronaut1 = Astronaut.create!(name: 'Astro 1', age: 30, job: 'Job 1')
